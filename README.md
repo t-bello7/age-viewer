@@ -98,8 +98,8 @@ To Connect to postgreSQL server running from Docker Container
 - Password - postgresPW
 > The following field is same as used to make the docker container specified above as flags.
 
-
-
 # License
 
 Apache AGE Viewer is licensed under the Apache License, Version 2.0. See LICENSE for the full license text.
+
+export NODE_OPTIONS=--openssl-legacy-provider

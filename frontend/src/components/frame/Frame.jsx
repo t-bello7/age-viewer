@@ -69,6 +69,7 @@ const Frame = ({
   //   </Menu>
   // );
 
+  // create an element frame body
   return (
     <div className={`${styles.Frame} ${isFullScreen ? styles.FullScreen : ''}`}>
       <div className={styles.FrameHeader}>
@@ -214,6 +215,7 @@ const Frame = ({
           </Button>
         </div>
       </div>
+      
       <div
         className={`${styles.FrameBody} ${isExpand ? '' : styles.Contract} ${
           bodyNoPadding ? styles.NoPadding : ''

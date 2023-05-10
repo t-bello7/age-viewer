@@ -23,6 +23,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+iframe {
+  pointer-events: none;
+  position: static;
+  top: 0px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

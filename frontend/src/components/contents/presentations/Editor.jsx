@@ -25,6 +25,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle, faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
 import store from '../../../app/store';
 import AlertContainers from '../../alert/containers/AlertContainers';
+import BuilderContainer from '../../query_builder/BuilderContainer';
+import KeyWordFinder from '../../../features/query_builder/KeyWordFinder';
 import CodeMirror from '../../editor/containers/CodeMirrorWapperContainer';
 import SideBarToggle from '../../editor/containers/SideBarMenuToggleContainer';
 import { setting } from '../../../conf/config';
@@ -52,8 +54,8 @@ const Editor = ({
   const dispatch = useDispatch();
   const [alerts, setAlerts] = useState([]);
   const [activePromises, setPromises] = useState({});
-
-  // const favoritesCommand = () => {
+  const [finder, setFinder] = useState(null);
+  // const favoritesCommand = () => { 
   //   dispatch(() => addCommandFavorites(command));
   // };
 
@@ -138,7 +140,16 @@ const Editor = ({
       )),
     );
   }, [alertList]);
-
+  
+  useEffect(async () => {
+    const req = {
+      method: 'GET',
+    };
+    const res = await fetch('/api/v1/miscellaneous', req);
+    const results = await res.json();
+    const kwFinder = KeyWordFinder.fromMatrix(results);
+    setFinder(kwFinder);
+  }, []);
   return (
     <div className="container-fluid">
       <div className="editor">
@@ -205,10 +216,14 @@ const Editor = ({
                 />
               </button>
             </div>
+
           </div>
         </div>
+
       </div>
       {alerts}
+      <BuilderContainer finder={finder} />
+
     </div>
   );
 };

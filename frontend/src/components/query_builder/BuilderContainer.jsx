@@ -11,7 +11,7 @@ import KeyWordFinder from '../../features/query_builder/KeyWordFinder';
 import { setCommand } from '../../features/editor/EditorSlice';
 import './BuilderContainer.scss';
 
-const BuilderContainer = ({ open, setOpen, finder }) => {
+const BuilderContainer = ({ finder }) => {
   const [query, setQuery] = useState('');
   const [currentWord, setCurrentWord] = useState('');
   const [selectedGraph, setSelectedGraph] = useState('');
@@ -42,15 +42,10 @@ const BuilderContainer = ({ open, setOpen, finder }) => {
   const handleSubmit = () => {
     const finalQuery = `SELECT * FROM cypher('${selectedGraph}', $$ ${query} $$) as (V agtype)`;
     dispatch((setCommand(finalQuery)));
-    setOpen(false);
   };
+
   return (
-    <Drawer
-      title="Query Generator"
-      open={open}
-      onClose={() => setOpen(!open)}
-      placement="left"
-    >
+      <div>
       <Select
         id="graph-selection"
         onChange={handleSelectGraph}
@@ -66,10 +61,10 @@ const BuilderContainer = ({ open, setOpen, finder }) => {
           }
       </Select>
 
-      <Space />
+      {/* <Space />
       <div className="code-mirror-builder">
         <CodeMirror onChange={handleSetQuery} value={query} />
-      </div>
+      </div> */}
 
       <Space />
       <div className="selection-builder">
@@ -82,13 +77,10 @@ const BuilderContainer = ({ open, setOpen, finder }) => {
       <div id="submit-builder">
         <Button size="sm" onClick={handleSubmit}>Submit</Button>
       </div>
-
-    </Drawer>
+      </div>
   );
 };
 BuilderContainer.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-  finder: PropTypes.shape(KeyWordFinder).isRequired,
+  finder: PropTypes.shape(KeyWordFinder),
 };
 export default BuilderContainer;
