@@ -167,7 +167,7 @@ body {
 }
 
 .sidebar-item-disconnect {
-    width: 80%;
+    /* width: 80%; */
     margin: 1.5rem 1rem 1.5rem 1rem;
     text-align: center;
 }
@@ -238,11 +238,13 @@ a[data-toggle="collapse"] {
 .show-eraser {
     color: #B0B0B0;
     font-size: 1.5rem;
+    display: block;
 }
 
 .hide-eraser {
     font-size: 1.5rem;
-    visibility:hidden
+    /* visibility:hidden */
+    display: none;
 }
 
 .input-style{
@@ -394,7 +396,7 @@ a[data-toggle="collapse"] {
 
     .sidebar-item-disconnect {
         display: flex;
-        width: 75%;
+        /* width: 75%; */
         margin: 0 auto;
     }
 

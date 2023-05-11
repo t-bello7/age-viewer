@@ -1,6 +1,15 @@
 .container {
     display: flex;
 }
+
+.builder-container {
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+    margin-block: 1rem;
+}
+
 .code-mirror-builder{
     display: flex;
     padding: 5px 5px 5px 5px;
@@ -8,7 +17,6 @@
 
 .selection-builder{
     display: block;
-
 }
 
 #submit-builder{

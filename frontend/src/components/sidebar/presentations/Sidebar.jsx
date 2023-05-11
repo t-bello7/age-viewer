@@ -19,11 +19,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
 import SidebarHome from '../containers/SidebarHome';
 import SidebarSetting from '../containers/SidebarSetting';
 
 const Sidebar = ({ activeMenuName, isActive }) => (
-  <div id="sidebar" className={isActive ? ' active ' : 'inactive'}>
+  <Card id="sidebar" className={isActive ? ' active ' : 'inactive'}>
     <div className="tab-content">
       <div className={`tab-pane fade${activeMenuName === 'setting' ? ' active show ' : ''}`} role="tabpanel" aria-labelledby="side-setting-tab">
         <SidebarSetting />
@@ -34,7 +35,7 @@ const Sidebar = ({ activeMenuName, isActive }) => (
       </div>
       
     </div>
-  </div>
+  </Card>
 );
 
 Sidebar.propTypes = {

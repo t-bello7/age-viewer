@@ -1,12 +1,15 @@
 import {
-  Button, Drawer, Select, Space,
+  Select
 } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
 import CodeMirror from '../editor/containers/CodeMirrorWapperContainer';
 import BuilderSelection from './BuilderSelection';
 import KeyWordFinder from '../../features/query_builder/KeyWordFinder';
+import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { setCommand } from '../../features/editor/EditorSlice';
 import './BuilderContainer.scss';
@@ -45,7 +48,7 @@ const BuilderContainer = ({ finder }) => {
   };
 
   return (
-      <div >
+      <Card className='builder-container'>
       <Select
         id="graph-selection"
         onChange={handleSelectGraph}
@@ -76,10 +79,16 @@ const BuilderContainer = ({ finder }) => {
           />
         </div>
         <div id="submit-builder">
-          <Button size="sm" onClick={handleSubmit}>Submit</Button>
+          <button onClick={handleSubmit}>
+                  <FontAwesomeIcon
+                    icon={faLayerGroup}
+                    size="1x"
+                  />
+                  <span> Build Query </span>
+              </button>
         </div>
       </div>
-      </div>
+      </Card>
   );
 };
 BuilderContainer.propTypes = {

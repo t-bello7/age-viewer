@@ -42,11 +42,9 @@ const Editor = ({
   trimFrame,
   addAlert,
   alertList,
-  isActive,
   database,
   executeCypherQuery,
   addCommandHistory,
-  toggleMenu,
   setLabel,
   isLabel,
   // addCommandFavorites,
@@ -151,7 +149,7 @@ const Editor = ({
     setFinder(kwFinder);
   }, []);
   return (
-    <div className="container-fluid">
+    <div>
       <div className="editor">
         <div className="container-fluid editor-area card-header">
           <div className="input-group input-style">
@@ -176,6 +174,7 @@ const Editor = ({
                   icon={faTimesCircle}
                   size="1x"
                 />
+                <span> Clear Query</span>
               </button>
               <button
                 className="frame-head-button btn btn-link"
@@ -184,27 +183,10 @@ const Editor = ({
                 title="Run Query"
               >
                 <IconPlay />
+          
+                <span> Run Query </span>
               </button>
-              <button
-                className="frame-head-button btn btn-link"
-                type="button"
-                onClick={() => {
-                  toggleMenu('home');
-                  /*
-                  if (!isActive) {
-                    document.getElementById('wrapper')?.classList?.remove('wrapper');
-                    document.getElementById('wrapper')?.classList?.add('wrapper-extension-padding');
-                  } else {
-                    document.getElementById('wrapper')?
-                    .classList?.remove('wrapper-extension-padding');
-                    document.getElementById('wrapper')?.classList?.add('wrapper');
-                  } */
-                }}
-                title={(isActive) ? 'Hide' : 'Show'}
-              >
-                <SideBarToggle isActive={isActive} />
-              </button>
-              <button
+              {/* <button
                 className="frame-head-button btn btn-link"
                 type="button"
                 onClick={() => setLabel()}
@@ -214,7 +196,7 @@ const Editor = ({
                   icon={isLabel ? faToggleOn : faToggleOff}
                   size="2x"
                 />
-              </button>
+              </button> */}
             </div>
 
           </div>

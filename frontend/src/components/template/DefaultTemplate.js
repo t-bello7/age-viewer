@@ -20,6 +20,7 @@
 import { connect } from 'react-redux';
 import DefaultTemplate from './presentations/DefaultTemplate';
 import { changeSettings } from '../../features/setting/SettingSlice';
+import { toggleMenu } from '../../features/menu/MenuSlice';
 
 const mapStateToProps = (state) => ({
   theme: state.setting.theme,
@@ -29,7 +30,9 @@ const mapStateToProps = (state) => ({
   maxDataOfTable: state.setting.maxDataOfTable,
   isOpen: state.modal.isOpen,
   database: state.database,
+  isActive: state.navigator.isActive,
 });
 
-const mapDispatchToProps = { changeSettings };
+  
+const mapDispatchToProps = { changeSettings, toggleMenu };
 export default connect(mapStateToProps, mapDispatchToProps)(DefaultTemplate);

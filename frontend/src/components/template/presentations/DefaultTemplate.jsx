@@ -20,10 +20,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { Row } from 'react-bootstrap';
-import { Button } from 'antd';
+import { Card, Row } from 'react-bootstrap';
+import { faProjectDiagram, faLink, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import EditorContainer from '../../contents/containers/Editor';
 import Sidebar from '../../sidebar/containers/Sidebar';
+import SideBarToggle from '../../editor/containers/SideBarMenuToggleContainer'
 import Contents from '../../contents/containers/Contents';
 import DatabaseInitializerModal from '../../initializer/presentation/DatabaseInitializer';
 import InitGraphModal from '../../initializer/presentation/GraphInitializer';
@@ -32,7 +34,9 @@ import { loadFromCookie, saveToCookie } from '../../../features/cookie/CookieUti
 import './DefaultTemplate.scss';
 
 const DefaultTemplate = ({
+  isActive,
   theme,
+  toggleMenu,
   maxNumOfFrames,
   database,
   maxNumOfHistories,
@@ -103,7 +107,7 @@ const DefaultTemplate = ({
   });
 
   return (
-    <div className="default-template">
+    <div className="default-template container-fluid">
       { isOpen && <Modal /> }
       <input
         type="radio"
@@ -123,36 +127,71 @@ const DefaultTemplate = ({
       />
           <EditorContainer />
 
-        <div className="editor-division wrapper-extension-padding">
-          <Sidebar />
-          <div>
-          {
-            database.status ==  'connected' ? (
-            <div className='database-bar'>
-              <p> connected</p>
+      <div className=" editor-division wrapper-extension-padding">
+        <Sidebar />
+        <Card className='dbgraph-container'>
+        <button
+              className="sidebar-toggle"
+              type="button"
+              onClick={() => {
+                toggleMenu('home');
+                /*
+                if (!isActive) {
+                  document.getElementById('wrapper')?.classList?.remove('wrapper');
+                  document.getElementById('wrapper')?.classList?.add('wrapper-extension-padding');
+                } else {
+                  document.getElementById('wrapper')?
+                  .classList?.remove('wrapper-extension-padding');
+                  document.getElementById('wrapper')?.classList?.add('wrapper');
+                } */
+              }}
+              title={(isActive) ? 'Hide' : 'Show'}
+            >
+              <SideBarToggle isActive={isActive} />
+            </button>
+        {
+          database.status ==  'connected' ? (
+          <div className='database-bar'>
+            <p> Database Connected </p>
 
-              <InitGraphModal show={showGraphModal} setShow={setShowGraphModal} />
-              <Button onClick={() => setShowGraphModal(!showGraphModal)}> Create Graph </Button>
-              <Button >{dbButton}</Button>
-            </div>
-            ) : (
-            <div className='database-bar'>
-              <p> connect to server</p>
-              {/* <div>  */}
-                <DatabaseInitializerModal show={showDbModal} setShow={setShowDbModal} />
-                <Button onClick={() => setShowDbModal(!showDbModal)}>{dbButton}</Button>
-              {/* </div> */}
-            </div>
-            )
-          }
-            
-          <Row className="content-row">
-            <Contents />  
-          </Row>
+            <InitGraphModal show={showGraphModal} setShow={setShowGraphModal} />
+            <div className='btn-container'>
+              <button>
+                  <FontAwesomeIcon
+                    icon={faExclamationCircle}
+                    size="1x"
+                  />
+                  <span> {dbButton} </span>
+              </button>
+              <button onClick={() => setShowGraphModal(!showGraphModal)}>
+                  <FontAwesomeIcon
+                    icon={faProjectDiagram}
+                    size="1x"
+                  />
+                  <span> Create Graph </span>
+              </button>
+              </div>
           </div>
+          ) : (
+          <div className='database-bar'>
+            <p> Connect Database</p>
+              <DatabaseInitializerModal show={showDbModal} setShow={setShowDbModal} />
+              <button onClick={() => setShowDbModal(!showDbModal)}>
+                <FontAwesomeIcon
+                  icon={faLink}
+                  size="1x"
+                />
+                <span> {dbButton} </span>
+            </button>
+          </div>
+          )
+        }
+          
+        <Row className="content-row">
+          <Contents />  
+        </Row>
+        </Card>
         </div>
-
-
     </div>
   );
 };
@@ -169,6 +208,9 @@ DefaultTemplate.propTypes = {
     status: PropTypes.string.isRequired,
     host: PropTypes.string.isRequired,
   }).isRequired,
+  isActive: PropTypes.bool.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+
 };
 
 export default DefaultTemplate;
