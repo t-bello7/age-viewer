@@ -22,7 +22,6 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Contents from '../../frame/containers/ContentsFrameContainer';
 import ServerStatus from '../../frame/containers/ServerStatusContainer';
-import ServerConnect from '../../frame/containers/ServerConnectContainer';
 import ServerDisconnect from '../../frame/containers/ServerDisconnectContainer';
 import CypherGraphResult from '../../frame/containers/CypherGraphResultContainers';
 import CypherResult from '../../frame/containers/CypherResultContainers';
@@ -38,22 +37,22 @@ const Frames = ({
 }) => {
   const dispatch = useDispatch();
   const [frames, setFrames] = useState(null);
-  useEffect(() => {
-    if (database.status === 'connected' && frameList.length === 0) {
-      if (!setting.connectionStatusSkip) {
-        dispatch(() => addFrame(':server status', 'ServerStatus'));
-      }
-    }
+  // useEffect(() => {
+  //   if (database.status === 'connected' && frameList.length === 0) {
+  //     if (!setting.connectionStatusSkip) {
+  //       dispatch(() => addFrame(':server status', 'ServerStatus'));
+  //     }
+  //   }
 
-    if (database.status === 'disconnected') {
-      const serverConnectFrames = frameList.filter((frame) => (frame.frameName.toUpperCase() === 'SERVERCONNECT'));
-      if (!setting.closeWhenDisconnect) {
-        dispatch(() => addFrame(':server connect', 'ServerConnect'));
-      } else if (serverConnectFrames.length === 0) {
-        window.close();
-      }
-    }
-  }, [database.status]);
+  //   if (database.status === 'disconnected') {
+  //     const serverConnectFrames = frameList.filter((frame) => (frame.frameName.toUpperCase() === 'SERVERCONNECT'));
+  //     if (!setting.closeWhenDisconnect) {
+  //       dispatch(() => addFrame(':server connect', 'ServerConnect'));
+  //     } else if (serverConnectFrames.length === 0) {
+  //       window.close();
+  //     }
+  //   }
+  // }, [database.status]);
 
   useEffect(() => {
     setFrames(frameList.map((frame, index) => {
@@ -81,36 +80,36 @@ const Frames = ({
           />
         );
       }
-      if (frame.frameName === 'ServerStatus') {
-        return (
-          <ServerStatus
-            key={frame.frameProps.key}
-            refKey={frame.frameProps.key}
-            reqString={frame.frameProps.reqString}
-            isPinned={frame.isPinned}
-          />
-        );
-      }
-      if (frame.frameName === 'ServerConnect') {
-        return (
-          <ServerConnect
-            key={frame.frameProps.key}
-            refKey={frame.frameProps.key}
-            reqString={frame.frameProps.reqString}
-            isPinned={frame.isPinned}
-          />
-        );
-      }
-      if (frame.frameName === 'ServerDisconnect') {
-        return (
-          <ServerDisconnect
-            key={frame.frameProps.key}
-            refKey={frame.frameProps.key}
-            reqString={frame.frameProps.reqString}
-            isPinned={frame.isPinned}
-          />
-        );
-      }
+      // if (frame.frameName === 'ServerStatus') {
+      //   return (
+      //     <ServerStatus
+      //       key={frame.frameProps.key}
+      //       refKey={frame.frameProps.key}
+      //       reqString={frame.frameProps.reqString}
+      //       isPinned={frame.isPinned}
+      //     />
+      //   );
+      // }
+      // if (frame.frameName === 'ServerConnect') {
+      //   return (
+      //     <ServerConnect
+      //       key={frame.frameProps.key}
+      //       refKey={frame.frameProps.key}
+      //       reqString={frame.frameProps.reqString}
+      //       isPinned={frame.isPinned}
+      //     />
+      //   );
+      // }
+      // if (frame.frameName === 'ServerDisconnect') {
+      //   return (
+      //     <ServerDisconnect
+      //       key={frame.frameProps.key}
+      //       refKey={frame.frameProps.key}
+      //       reqString={frame.frameProps.reqString}
+      //       isPinned={frame.isPinned}
+      //     />
+      //   );
+      // }
       if (frame.frameName === 'CypherResultFrame') {
         if (queryResult[frame.frameProps.key]?.complete && (queryResult[frame.frameProps.key].command !== null ? queryResult[frame.frameProps.key].command.toUpperCase() : 'NULL')
           .match('(ERROR|GRAPH|CREATE|UPDATE|COPY|NULL).*')) {

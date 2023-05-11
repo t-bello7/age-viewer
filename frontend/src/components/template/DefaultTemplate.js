@@ -27,8 +27,8 @@ const mapStateToProps = (state) => ({
   maxNumOfHistories: state.setting.maxNumOfHistories,
   maxDataOfGraph: state.setting.maxDataOfGraph,
   maxDataOfTable: state.setting.maxDataOfTable,
-  // database: state.database,
   isOpen: state.modal.isOpen,
+  database: state.database,
 });
 
 const mapDispatchToProps = { changeSettings };
