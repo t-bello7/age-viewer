@@ -25,12 +25,14 @@ import SidebarSetting from '../containers/SidebarSetting';
 const Sidebar = ({ activeMenuName, isActive }) => (
   <div id="sidebar" className={isActive ? ' active ' : 'inactive'}>
     <div className="tab-content">
-      <div className={`tab-pane fade${activeMenuName === 'home' ? ' active show ' : ''}`} role="tabpanel" aria-labelledby="side-home-tab">
-        <SidebarHome />
-      </div>
       <div className={`tab-pane fade${activeMenuName === 'setting' ? ' active show ' : ''}`} role="tabpanel" aria-labelledby="side-setting-tab">
         <SidebarSetting />
       </div>
+
+      <div className={`tab-pane fade${activeMenuName === 'home' ? ' active show ' : ''}`} role="tabpanel" aria-labelledby="side-home-tab">
+        <SidebarHome />
+      </div>
+      
     </div>
   </div>
 );

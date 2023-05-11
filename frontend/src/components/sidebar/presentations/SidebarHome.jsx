@@ -384,46 +384,7 @@ const SidebarHome = ({
 
   return (
     <div className="sidebar-home">
-      <div className="sidebar sidebar-body">
-        <div className="form-group sidebar-item">
-          <b>Node Label</b>
-          <br />
-          <NodeList nodes={nodes} setCommand={setCommand} />
-        </div>
-        <VerticalLine />
-        <div className="form-group sidebar-item">
-          <b>Edge Label</b>
-          <br />
-          <EdgeList edges={edges} setCommand={setCommand} />
-        </div>
-        <VerticalLine />
-        <div className="form-group sidebar-item">
-          <b>Properties</b>
-          <br />
-          <PropertyList propertyKeys={propertyKeys} setCommand={setCommand} />
-        </div>
-        <div id="lastHorizontalLine">
-          <VerticalLine />
-        </div>
-        { isLabel && (
-          <>
-            <div className="form-group sidebar-item">
-              <b>Graphs</b>
-              <br />
-              <GraphList
-                graphs={graphs}
-                currentGraph={currentGraph}
-                changeCurrentGraph={changeCurrentGraph}
-                changeGraph={changeGraph}
-              />
-            </div>
-            <div id="lastHorizontalLine">
-              <VerticalLine />
-            </div>
-          </>
-        ) }
-      </div>
-      <div className="sidebar-item-disconnect-outer">
+            <div className="sidebar-item-disconnect-outer">
         <div className="form-group sidebar-item-disconnect">
           <div className="sidebar-item-disconnect-buttons">
             <button
@@ -438,7 +399,6 @@ const SidebarHome = ({
                 flip="horizontal"
               />
             </button>
-            <br />
             <b>Refresh</b>
           </div>
           <HorizontalLine />
@@ -463,7 +423,6 @@ const SidebarHome = ({
                 color="white"
               />
             </button>
-            <br />
             <b>Close Session</b>
           </div>
           { !isLabel && (
@@ -480,6 +439,40 @@ const SidebarHome = ({
             </>
           ) }
         </div>
+      </div>
+      <div className="sidebar sidebar-body">
+        <div className="form-group sidebar-item">
+          <b>Node Label</b>
+          <NodeList nodes={nodes} setCommand={setCommand} />
+        </div>
+        <div className="form-group sidebar-item">
+          <b>Edge Label</b>
+          <EdgeList edges={edges} setCommand={setCommand} />
+        </div>
+        <div className="form-group sidebar-item">
+          <b>Properties</b>
+          <PropertyList propertyKeys={propertyKeys} setCommand={setCommand} />
+        </div>
+        <div id="lastHorizontalLine">
+          {/* <VerticalLine /> */}
+        </div>
+        { isLabel && (
+          <>
+            <div className="form-group sidebar-item">
+              <b>Graphs</b>
+              <br />
+              <GraphList
+                graphs={graphs}
+                currentGraph={currentGraph}
+                changeCurrentGraph={changeCurrentGraph}
+                changeGraph={changeGraph}
+              />
+            </div>
+            <div id="lastHorizontalLine">
+              <VerticalLine />
+            </div>
+          </>
+        ) }
       </div>
     </div>
   );

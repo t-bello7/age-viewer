@@ -10,7 +10,7 @@ const BuilderSelection = ({ finder, setQuery, currentWord }) => {
     setQuery(selectedVal);
   };
   return (
-    <ListGroup>
+    <ListGroup horizontal>
       {
     finder?.getConnectedNames(currentWord).map(
       (element) => (

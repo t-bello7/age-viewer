@@ -45,7 +45,7 @@ const BuilderContainer = ({ finder }) => {
   };
 
   return (
-      <div>
+      <div >
       <Select
         id="graph-selection"
         onChange={handleSelectGraph}
@@ -66,16 +66,18 @@ const BuilderContainer = ({ finder }) => {
         <CodeMirror onChange={handleSetQuery} value={query} />
       </div> */}
 
-      <Space />
-      <div className="selection-builder">
-        <BuilderSelection
-          finder={finder}
-          setQuery={handleSetQuery}
-          currentWord={currentWord}
-        />
-      </div>
-      <div id="submit-builder">
-        <Button size="sm" onClick={handleSubmit}>Submit</Button>
+      {/* <Space /> */}
+      <div className='container'>
+        <div className="selection-builder">
+          <BuilderSelection
+            finder={finder}
+            setQuery={handleSetQuery}
+            currentWord={currentWord}
+          />
+        </div>
+        <div id="submit-builder">
+          <Button size="sm" onClick={handleSubmit}>Submit</Button>
+        </div>
       </div>
       </div>
   );

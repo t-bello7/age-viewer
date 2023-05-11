@@ -121,17 +121,11 @@ const DefaultTemplate = ({
         checked={theme === 'dark'}
         readOnly
       />
-        <div className="editor-division wrapper-extension-padding">
-          <div>
-
           <EditorContainer />
+
+        <div className="editor-division wrapper-extension-padding">
           <Sidebar />
-
-
-          </div>
           <div>
-          
-
           {
             database.status ==  'connected' ? (
             <div className='database-bar'>
@@ -144,9 +138,10 @@ const DefaultTemplate = ({
             ) : (
             <div className='database-bar'>
               <p> connect to server</p>
-
-              <DatabaseInitializerModal show={showDbModal} setShow={setShowDbModal} />
-              <Button onClick={() => setShowDbModal(!showDbModal)}>{dbButton}</Button>
+              {/* <div>  */}
+                <DatabaseInitializerModal show={showDbModal} setShow={setShowDbModal} />
+                <Button onClick={() => setShowDbModal(!showDbModal)}>{dbButton}</Button>
+              {/* </div> */}
             </div>
             )
           }

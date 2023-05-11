@@ -221,9 +221,8 @@ const Editor = ({
         </div>
 
       </div>
-      {alerts}
       <BuilderContainer finder={finder} />
-
+      {alerts}
     </div>
   );
 };

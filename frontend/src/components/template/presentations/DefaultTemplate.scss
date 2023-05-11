@@ -1,6 +1,10 @@
 .editor-division{
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;   
+    // display: grid;
+    // grid-template-columns: 1fr 1.5fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;   
+
 }
 
 .database-bar{

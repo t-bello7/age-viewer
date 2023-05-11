@@ -124,7 +124,7 @@ body {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 #navbar {
-    width: 100%sideba;
+    width: 100%;
     background-color: var(--navbar-color);
 }
 
@@ -148,22 +148,21 @@ body {
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: row;
     color: #495057
 }
 
-.sidebar-home {
+/* .sidebar-home {
     display: flex;
-}
+} */
 
 .sidebar-item {
-    width: 30%;
+    display: flex;
+    justify-content: space-between;
     margin: 1.5rem 1rem 1.5rem 1rem;
 }
 
 .sidebar-body {
-    width: 88%;
+    /* width: 88%;   */
     /* margin: 1.5rem 1rem 1.5rem 1rem; */
 }
 
@@ -379,14 +378,15 @@ a[data-toggle="collapse"] {
         visibility: collapse;
     }
 
-    .sidebar-home {
+    /* .sidebar-home {
         display: flex;
+        flex-direction: column;
     }
-    
-    .sidebar-body {
+     */
+    /* .sidebar-body {
         display: flex;
         width: 100%;
-    }
+    } */
 
     .horizontalLine {
         visibility: collapse;
